@@ -27,6 +27,7 @@ task runAllTests(type: Test) {
     useTestNG() {
         parallel = "classes"
         threadCount = 1
+        testLogging.showStandardStreams = true
         useDefaultListeners = false
         listeners << 'org.uncommons.reportng.HTMLReporter'
         listeners << 'org.uncommons.reportng.JUnitXMLReporter'
