@@ -9,7 +9,6 @@ public class ResponseSpecificationBuilder {
     public static ResponseSpecification getResponseSpecification() {
         return new ResponseSpecBuilder()
                 .expectContentType(ContentType.JSON)
-                .log(LogDetail.ALL)
                 .build();
     }
 }

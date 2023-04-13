@@ -8,11 +8,9 @@ import io.restassured.specification.RequestSpecification;
 public class RequestSpecificationBuilder {
 
     public static RequestSpecification getRequestSpecification() {
-        System.out.println("\n---------Request----------");
         return new RequestSpecBuilder()
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)
-                .log(LogDetail.ALL)
                 .build();
     }
 }
