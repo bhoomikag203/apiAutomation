@@ -10,9 +10,9 @@ public class PropertiesReader {
     public PropertiesReader() {
         properties = new Properties();
         try {
-            FileInputStream ip = new FileInputStream("src/main/resources/config.properties");
-            properties.load(ip);
-
+            String fileName = this.getClass().getClassLoader().getResource("config.properties").getFile();
+            FileInputStream fileInputStream = new FileInputStream(fileName);
+            properties.load(fileInputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
