@@ -11,8 +11,7 @@ Created a simple framework to validate CRUD operation of https://reqres.in/api/u
 Clone the repository and execute below command
 
 ```
-$ ./gradlew clean build 
-$ ./gradlew runAllTests
+$ ./gradlew clean runAllTests 
 ```
 
 
