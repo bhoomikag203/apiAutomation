@@ -10,14 +10,26 @@ repositories {
 }
 
 dependencies {
-    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '4.2.0'
-    testImplementation group: 'io.rest-assured', name: 'json-schema-validator', version: '4.2.0'
-    testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.2'
-    testImplementation group: 'org.projectlombok', name: 'lombok', version: '1.18.16'
-    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.16'
-    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.16'
+    implementation group: 'org.testng', name: 'testng', version: '7.1.0'
+    testImplementation group: 'org.uncommons', name: 'reportng', version: '1.1.4'
+    implementation group: 'io.rest-assured', name: 'rest-assured', version: '4.5.1'
+    implementation group: 'io.rest-assured', name: 'json-schema-validator', version: '4.5.1'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.2'
+    implementation group: 'com.github.javafaker', name: 'javafaker', version: '1.0.2'
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.6'
+    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
+    implementation group: 'org.json', name: 'json', version: '20230227'
 }
 
-test {
-    useTestNG()
+task runAllTests(type: Test) {
+    useTestNG() {
+        parallel = "classes"
+        threadCount = 1
+        useDefaultListeners = false
+        listeners << 'org.uncommons.reportng.HTMLReporter'
+        listeners << 'org.uncommons.reportng.JUnitXMLReporter'
+        outputDirectory = file("$buildDir/reportng-reports")
+    }
 }

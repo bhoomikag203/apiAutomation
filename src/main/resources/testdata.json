@@ -1,0 +1,21 @@
+{
+  "user1": {
+    "name": "Raju",
+    "job": "Software Engineer"
+  },
+  "user2": {
+    "id": 2,
+    "email": "janet.weaver@reqres.in",
+    "firstName": "Janet",
+    "lastName": "Weaver",
+    "avatar": "https://reqres.in/img/faces/2-image.jpg"
+  },
+  "user3": {
+    "name": "Jasbhir",
+    "job": "Manager"
+  },
+  "updateUserDetails": {
+    "name": "Raju GT",
+    "job": "Lead Software Engineer"
+  }
+}
