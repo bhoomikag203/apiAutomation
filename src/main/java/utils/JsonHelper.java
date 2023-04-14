@@ -8,6 +8,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -32,7 +33,8 @@ public class JsonHelper {
     public JSONObject getJsonObject(String fileName) {
         List<String> strings = Arrays.asList();
         try {
-            strings = Files.readAllLines(Paths.get(this.getClass().getClassLoader().getResource(fileName).toURI()), StandardCharsets.UTF_8);
+            URI uri = this.getClass().getClassLoader().getResource(fileName).toURI();
+            strings = Files.readAllLines(Paths.get(uri), StandardCharsets.UTF_8);
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
