@@ -1,0 +1,16 @@
+image: openjdk:11
+
+stages:
+  - test
+
+before_script:
+  - apt-get update && apt-get install -y git
+  - apt-get install -y wget
+  - wget https://services.gradle.org/distributions/gradle-7.0.2-bin.zip
+  - unzip gradle-7.0.2-bin.zip
+  - export PATH=$PATH:/gradle-7.0.2/bin
+
+test:
+  stage: test
+  script:
+    - gradle test
