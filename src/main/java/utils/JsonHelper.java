@@ -8,7 +8,12 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,22 +30,12 @@ public class JsonHelper {
     }
 
     public JSONObject getJsonObject(String fileName) {
-        return new org.json.JSONObject(getFileContentsAsString(fileName));
-    }
-
-    private String getFileContentsAsString(String fileName) {
-        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(fileName);
-        return getFileContentsAsString(inputStream);
-    }
-
-
-    private String getFileContentsAsString(InputStream stream) {
-        List<String> lines = Arrays.asList();
+        List<String> strings = Arrays.asList();
         try {
-            lines = IOUtils.readLines(stream, StandardCharsets.UTF_8);
-        } catch (IOException e) {
+            strings = Files.readAllLines(Paths.get(this.getClass().getClassLoader().getResource(fileName).toURI()), StandardCharsets.UTF_8);
+        } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
-        return StringUtils.join(lines, "");
+        return new org.json.JSONObject(StringUtils.join(strings, ""));
     }
 }
